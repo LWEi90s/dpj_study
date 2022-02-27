@@ -1,0 +1,76 @@
+//独立按键实验
+#include "reg52.h"
+
+
+
+typedef unsigned int u16;	//对系统默认数据类型进行重定义
+typedef unsigned char u8;
+
+
+//定义管脚
+sbit KEY1=P3^1;
+sbit KEY2=P3^0;
+sbit KEY3=P3^2;
+sbit KEY4=P3^3;
+ //第一指示灯
+sbit LED1=P2^0;
+
+//定义宏
+#define KEY1_PRESS 1
+#define KEY2_PRESS 2
+#define KEY3_PRESS 3
+#define KEY4_PRESS 4
+#define KEY_UNPRESS 0
+
+
+//延时函数
+void delay_10us(u16 ten_us)
+{
+  while(ten_us--);
+}
+
+//按键检测函数
+u8 key_scanf(u8 mode) //设置形参：单次监测
+{
+	static u8 key=1;//静态变量	全局变量
+
+   if(mode)
+   {
+      key=1;
+   }
+   if(key==1&&(KEY1==0||KEY2==0||KEY3==0||KEY4==0))
+   {
+        key=0;
+   	   delay_10us(1000);//消抖处理 10毫秒
+	   if(KEY1==0)
+	   	 return KEY1_PRESS;
+	   else if(KEY2==0)
+	   	 return KEY2_PRESS;
+	   else if(KEY3==0)
+	   	 return KEY3_PRESS;
+	   else if(KEY4==0)
+	   	 return KEY4_PRESS;
+   }
+   else if(KEY1==1&&KEY2==1&&KEY3==1&&KEY4==1)
+   {
+   		 key=1;
+   }
+   	   	return KEY_UNPRESS;
+
+}
+
+void main()
+{
+	u8 key=0;
+	  
+  while(1)
+  {
+	key= key_scanf(0);//单次扫描0，连续扫描1
+	if(key==KEY1_PRESS)
+	{
+	   LED1=!LED1;	  //LED翻转
+
+	}
+  }
+
+  }
