@@ -1,0 +1,84 @@
+C51 COMPILER V9.54   MAIN                                                                  03/19/2022 15:57:43 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: I:\Keilv5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main.
+                    -lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          
+   3          //延时函数
+   4          void Delay(unsigned int xms)    //@12.000MHz 1ms
+   5          {
+   6   1        unsigned char i, j;
+   7   1        while(xms)
+   8   1        {
+   9   2              i = 2;
+  10   2            j = 239;
+  11   2            do
+  12   2            {
+  13   3              while (--j);
+  14   3            } while (--i);
+  15   2            xms--;
+  16   2        }
+  17   1      }
+  18          
+  19          unsigned char LEDNum;//定义个全局变量，在main里面就是局部变量
+  20          
+  21          void main()
+  22          {
+  23   1      
+  24   1        while(1)
+  25   1        {
+  26   2          if(P3_1==0)
+  27   2          {
+  28   3            Delay(20);//检测松手
+  29   3            while(P3_1==0);
+  30   3            Delay(20);
+  31   3            
+  32   3            LEDNum++;
+  33   3            if(LEDNum>=8)
+  34   3            {
+  35   4              LEDNum=0;
+  36   4            }
+  37   3            P2=~(0x01<<LEDNum);//给0是灭所以取反  
+  38   3          }
+  39   2          //第二个按钮
+  40   2          if(P3_0==0)
+  41   2              {
+  42   3                Delay(20);//检测松手
+  43   3                while(P3_0==0);
+  44   3                Delay(20);
+  45   3                
+  46   3                if(LEDNum==0)
+  47   3                {
+  48   4                  LEDNum=7;
+  49   4                }
+  50   3                else
+  51   3                {
+  52   4                  LEDNum--;
+  53   4                }
+  54   3                P2=~(0x01<<LEDNum);//给0是灭所以取反  
+C51 COMPILER V9.54   MAIN                                                                  03/19/2022 15:57:43 PAGE 2   
+
+  55   3              }   
+  56   2        }
+  57   1        
+  58   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    105    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
