@@ -1,0 +1,169 @@
+C51 COMPILER V9.54   MATRIXKEY                                                             03/21/2022 21:17:28 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MATRIXKEY
+OBJECT MODULE PLACED IN .\Objects\MatrixKey.obj
+COMPILER INVOKED BY: I:\Keilv5\C51\BIN\C51.EXE MatrixKey.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -MatrixKey.lst) TABS(2) OBJECT(.\Objects\MatrixKey.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "Delay.h"
+   3          
+   4          /**
+   5            * @brief 矩阵键盘函数,按列扫描 
+   6            * @param  |
+   7            * @param  |
+   8            * @param  |
+   9            * @retval  KeyNumber 按下按键的键码值
+  10            如果按键按下不放，程序会停留在此函数，松手一瞬间，返回按键键码，没有按键按下时，返回0
+  11            */
+  12          
+  13          unsigned char MatrixKey()//有返回值无参数
+  14          {
+  15   1        unsigned char KeyNumber=0;
+  16   1        
+  17   1        P1=0xFF;//将P1接口的都设置为1高电平
+  18   1        P1_3=0;
+  19   1        if(P1_7==0)//S1的检测
+  20   1          {
+  21   2            Delay(20);//消抖 
+  22   2            while(P1_7==0);//检测松手，如果还是按下的就一直循环
+  23   2            Delay(20);//消抖
+  24   2            KeyNumber=1;  
+  25   2            }
+  26   1        if(P1_6==0)//S5的检测
+  27   1          {
+  28   2            Delay(20);//消抖 
+  29   2            while(P1_7==0);//检测松手，如果还是按下的就一直循环
+  30   2            Delay(20);//消抖
+  31   2            KeyNumber=5;  
+  32   2            }
+  33   1        if(P1_5==0)//S9的检测
+  34   1          {
+  35   2            Delay(20);//消抖 
+  36   2            while(P1_7==0);//检测松手，如果还是按下的就一直循环
+  37   2            Delay(20);//消抖
+  38   2            KeyNumber=9;  
+  39   2            }
+  40   1        if(P1_4==0)//S13的检测
+  41   1          {
+  42   2            Delay(20);//消抖 
+  43   2            while(P1_7==0);//检测松手，如果还是按下的就一直循环
+  44   2            Delay(20);//消抖
+  45   2            KeyNumber=13; 
+  46   2            }   
+  47   1          
+  48   1      P1=0xFF;//将P1接口的都设置为1高电平
+  49   1        P1_2=0;
+  50   1        if(P1_7==0)//S2的检测
+  51   1          {
+  52   2            Delay(20);//消抖 
+  53   2            while(P1_7==0);//检测松手，如果还是按下的就一直循环
+  54   2            Delay(20);//消抖
+C51 COMPILER V9.54   MATRIXKEY                                                             03/21/2022 21:17:28 PAGE 2   
+
+  55   2            KeyNumber=2;  
+  56   2            }
+  57   1        if(P1_6==0)//S6的检测
+  58   1          {
+  59   2            Delay(20);//消抖 
+  60   2            while(P1_7==0);//检测松手，如果还是按下的就一直循环
+  61   2            Delay(20);//消抖
+  62   2            KeyNumber=6;  
+  63   2            }
+  64   1        if(P1_5==0)//S10的检测
+  65   1          {
+  66   2            Delay(20);//消抖 
+  67   2            while(P1_7==0);//检测松手，如果还是按下的就一直循环
+  68   2            Delay(20);//消抖
+  69   2            KeyNumber=10; 
+  70   2            }
+  71   1        if(P1_4==0)//S14的检测
+  72   1          {
+  73   2            Delay(20);//消抖 
+  74   2            while(P1_7==0);//检测松手，如果还是按下的就一直循环
+  75   2            Delay(20);//消抖
+  76   2            KeyNumber=14; 
+  77   2            }
+  78   1      
+  79   1      P1=0xFF;//将P1接口的都设置为1高电平
+  80   1        P1_2=0;
+  81   1        if(P1_7==0)//S3的检测
+  82   1          {
+  83   2            Delay(20);//消抖 
+  84   2            while(P1_7==0);//检测松手，如果还是按下的就一直循环
+  85   2            Delay(20);//消抖
+  86   2            KeyNumber=3;  
+  87   2            }
+  88   1        if(P1_6==0)//S7的检测
+  89   1          {
+  90   2            Delay(20);//消抖 
+  91   2            while(P1_7==0);//检测松手，如果还是按下的就一直循环
+  92   2            Delay(20);//消抖
+  93   2            KeyNumber=7;  
+  94   2            }
+  95   1        if(P1_5==0)//S11的检测
+  96   1          {
+  97   2            Delay(20);//消抖 
+  98   2            while(P1_7==0);//检测松手，如果还是按下的就一直循环
+  99   2            Delay(20);//消抖
+ 100   2            KeyNumber=11; 
+ 101   2            }
+ 102   1        if(P1_4==0)//S15的检测
+ 103   1          {
+ 104   2            Delay(20);//消抖 
+ 105   2            while(P1_7==0);//检测松手，如果还是按下的就一直循环
+ 106   2            Delay(20);//消抖
+ 107   2            KeyNumber=15; 
+ 108   2            }
+ 109   1      
+ 110   1      P1=0xFF;//将P1接口的都设置为1高电平
+ 111   1        P1_0=0;
+ 112   1        if(P1_7==0)//S4的检测
+ 113   1          {
+ 114   2            Delay(20);//消抖 
+ 115   2            while(P1_7==0);//检测松手，如果还是按下的就一直循环
+ 116   2            Delay(20);//消抖
+C51 COMPILER V9.54   MATRIXKEY                                                             03/21/2022 21:17:28 PAGE 3   
+
+ 117   2            KeyNumber=4;  
+ 118   2            }
+ 119   1        if(P1_6==0)//S8的检测
+ 120   1          {
+ 121   2            Delay(20);//消抖 
+ 122   2            while(P1_7==0);//检测松手，如果还是按下的就一直循环
+ 123   2            Delay(20);//消抖
+ 124   2            KeyNumber=8;  
+ 125   2            }
+ 126   1        if(P1_5==0)//S12的检测
+ 127   1          {
+ 128   2            Delay(20);//消抖 
+ 129   2            while(P1_7==0);//检测松手，如果还是按下的就一直循环
+ 130   2            Delay(20);//消抖
+ 131   2            KeyNumber=12; 
+ 132   2            }
+ 133   1        if(P1_4==0)//S16的检测
+ 134   1          {
+ 135   2            Delay(20);//消抖 
+ 136   2            while(P1_7==0);//检测松手，如果还是按下的就一直循环
+ 137   2            Delay(20);//消抖
+ 138   2            KeyNumber=16; 
+ 139   2            }     
+ 140   1        return KeyNumber;
+ 141   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    393    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

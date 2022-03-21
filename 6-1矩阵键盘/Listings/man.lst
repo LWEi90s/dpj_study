@@ -1,0 +1,42 @@
+C51 COMPILER V9.54   MAN                                                                   03/21/2022 21:01:16 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAN
+OBJECT MODULE PLACED IN .\Objects\man.obj
+COMPILER INVOKED BY: I:\Keilv5\C51\BIN\C51.EXE man.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\man.ls
+                    -t) TABS(2) OBJECT(.\Objects\man.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "Delay.h"
+   3          #include "LCD1602.H"
+   4          #include "MatrixKey.h"
+   5          
+   6          unsigned char KeyNum=0;
+   7          void main()
+   8          {
+   9   1      
+  10   1        while(1)
+  11   1        {
+  12   2          KeyNum = MatrixKey();
+  13   2          if(KeyNum!=0)
+  14   2          {
+  15   3            LCD_ShowNum(2,1,KeyNum,2);
+  16   3          }
+  17   2        }
+  18   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     24    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
