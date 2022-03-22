@@ -1,0 +1,70 @@
+C51 COMPILER V9.54   KEY                                                                   03/22/2022 20:01:29 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE KEY
+OBJECT MODULE PLACED IN .\Objects\key.obj
+COMPILER INVOKED BY: I:\Keilv5\C51\BIN\C51.EXE key.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\key.ls
+                    -t) TABS(2) OBJECT(.\Objects\key.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "Delay.h"
+   3          
+   4          /**
+   5            * @brief  获取独立按键键码
+   6            * @param  无
+   7            * @param  |
+   8            * @param  |
+   9            * @retval 按下按键的键码。范围：0~4； 无按键按下时返回值为0
+  10            */
+  11          unsigned char Key()
+  12          {
+  13   1        unsigned char KeyNumber=0;
+  14   1        //按键检测
+  15   1        if(P3_1==0)
+  16   1        {
+  17   2          Delay(20);
+  18   2          while(P3_1==0);
+  19   2          Delay(20);
+  20   2          KeyNumber=1;
+  21   2        }
+  22   1        if(P3_2==0)
+  23   1        {
+  24   2          Delay(20);
+  25   2          while(P3_2==0);
+  26   2          Delay(20);
+  27   2          KeyNumber=1;
+  28   2        }
+  29   1        if(P3_3==0)
+  30   1        {
+  31   2          Delay(20);
+  32   2          while(P3_3==0);
+  33   2          Delay(20);
+  34   2          KeyNumber=1;
+  35   2        }
+  36   1        if(P3_4==0)
+  37   1        {
+  38   2          Delay(20);
+  39   2          while(P3_4==0);
+  40   2          Delay(20);
+  41   2          KeyNumber=1;
+  42   2        }
+  43   1        return KeyNumber;
+  44   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     97    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+C51 COMPILER V9.54   KEY                                                                   03/22/2022 20:01:29 PAGE 2   
+
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
