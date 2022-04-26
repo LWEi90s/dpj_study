@@ -1,0 +1,2 @@
+1.gpio的概念
+2.gpio上的功能：pwm，adc等
